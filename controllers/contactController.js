@@ -1,4 +1,4 @@
-const transporter = require("../config/mail");
+const resend = require("../config/mail");
 const Contact = require("../models/Contact");
 const createContact = async (req, res) => {
   try {
@@ -15,10 +15,9 @@ const createContact = async (req, res) => {
       subject,
       message,
     });
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-
+    await resend.emails.send({
+      from: "Jatin Portfolio <onboarding@resend.dev>",
+      to: "jatin200336@gmail.com", // ya process.env.EMAIL_USER
       subject: `📩 New Portfolio Contact - ${subject}`,
 
       html: `
@@ -35,8 +34,8 @@ const createContact = async (req, res) => {
     <p>${message}</p>
   `,
     });
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+    await resend.emails.send({
+      from: "Jatin Portfolio <onboarding@resend.dev>",
       to: email,
 
       subject: "Thank You for Contacting Me",

@@ -6,7 +6,8 @@ const contactRoutes = require("./routes/contactRoutes");
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://jatin-portfolio-dev.vercel.app"],
+    methods: ["GET", "POST"],
   }),
 );
 connectDB();
